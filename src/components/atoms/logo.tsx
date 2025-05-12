@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import Link from "next/link"
-import { motion } from "framer-motion"
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 interface LogoProps {
-  size?: "sm" | "md" | "lg"
-  withText?: boolean
+  size?: "sm" | "md" | "lg";
+  withText?: boolean;
 }
 
 export default function Logo({ size = "md", withText = true }: LogoProps) {
@@ -14,10 +14,10 @@ export default function Logo({ size = "md", withText = true }: LogoProps) {
     sm: 30,
     md: 40,
     lg: 50,
-  }
+  };
 
   return (
-    <Link href="/" className="flex items-center gap-2">
+    <Link href="/" className="flex items-center gap-2 mb-6">
       <Image
         src="/images/logo.png"
         alt="GrantFox Logo"
@@ -35,5 +35,5 @@ export default function Logo({ size = "md", withText = true }: LogoProps) {
         </motion.span>
       )}
     </Link>
-  )
+  );
 }

@@ -1,14 +1,8 @@
-"use client"
+"use client";
 
-import { Suspense, useEffect, useState } from "react"
-import dynamic from "next/dynamic"
+import { Suspense, useEffect, useState } from "react";
 
 // Dynamically import the 3D components with no SSR to avoid React hydration issues
-const Scene3D = dynamic(() => import("@/components/scene-3d"), {
-  ssr: false,
-  loading: () => <ScenePlaceholder />,
-})
-
 function ScenePlaceholder() {
   return (
     <div className="w-full h-full flex items-center justify-center bg-black">
@@ -19,25 +13,19 @@ function ScenePlaceholder() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default function FoxScene() {
-  const [isMounted, setIsMounted] = useState(false)
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true)
-  }, [])
+    setIsMounted(true);
+  }, []);
 
   return (
     <div className="w-full h-full">
-      {isMounted ? (
-        <Suspense fallback={<ScenePlaceholder />}>
-          <Scene3D />
-        </Suspense>
-      ) : (
-        <ScenePlaceholder />
-      )}
+      <ScenePlaceholder />
     </div>
-  )
+  );
 }
