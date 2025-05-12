@@ -1,50 +1,48 @@
-"use client"
+"use client";
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react";
 
 export default function WebGLBackground() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const programInfoRef = useRef<any>(null)
-  const buffersRef = useRef<any>(null)
-  const timeRef = useRef<number>(0)
-  const mouseRef = useRef<{ x: number; y: number }>({ x: 0.5, y: 0.5 })
-  const [isWebGLSupported, setIsWebGLSupported] = useState(true)
-  const [time, setTime] = useState(0)
-  const [mouse, setMouse] = useState({ x: 0.5, y: 0.5 })
-  const [resolution, setResolution] = useState({ width: 0, height: 0 })
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const programInfoRef = useRef<any>(null);
+  const buffersRef = useRef<any>(null);
+  const [isWebGLSupported, setIsWebGLSupported] = useState(true);
+  const [, setTime] = useState(0);
+  const [mouse, setMouse] = useState({ x: 0.5, y: 0.5 });
+  const [resolution, setResolution] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
-    if (!canvasRef.current) return
+    if (!canvasRef.current) return;
 
-    const canvas = canvasRef.current
-    const gl = canvas.getContext("webgl")
+    const canvas = canvasRef.current;
+    const gl = canvas.getContext("webgl");
 
     if (!gl) {
-      console.error("WebGL not supported")
-      setIsWebGLSupported(false)
-      return
+      console.error("WebGL not supported");
+      setIsWebGLSupported(false);
+      return;
     }
 
     // Set canvas size
     const setCanvasSize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-      gl.viewport(0, 0, canvas.width, canvas.height)
-      setResolution({ width: canvas.width, height: canvas.height })
-    }
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      gl.viewport(0, 0, canvas.width, canvas.height);
+      setResolution({ width: canvas.width, height: canvas.height });
+    };
 
-    setCanvasSize()
-    window.addEventListener("resize", setCanvasSize)
+    setCanvasSize();
+    window.addEventListener("resize", setCanvasSize);
 
     // Track mouse movement
     const handleMouseMove = (e: MouseEvent) => {
       setMouse({
         x: e.clientX / window.innerWidth,
         y: e.clientY / window.innerHeight,
-      })
-    }
+      });
+    };
 
-    window.addEventListener("mousemove", handleMouseMove)
+    window.addEventListener("mousemove", handleMouseMove);
 
     // Vertex shader program
     const vsSource = `
@@ -57,7 +55,7 @@ export default function WebGLBackground() {
         gl_Position = aVertexPosition;
         vTextureCoord = aTextureCoord;
       }
-    `
+    `;
 
     // Fragment shader program
     const fsSource = `
@@ -208,14 +206,14 @@ export default function WebGLBackground() {
         
         gl_FragColor = vec4(color, 1.0);
       }
-    `
+    `;
 
     // Initialize a shader program
-    const shaderProgram = initShaderProgram(gl, vsSource, fsSource)
+    const shaderProgram = initShaderProgram(gl, vsSource, fsSource);
 
     if (!shaderProgram) {
-      setIsWebGLSupported(false)
-      return
+      setIsWebGLSupported(false);
+      return;
     }
 
     // Collect all the info needed to use the shader program
@@ -230,66 +228,76 @@ export default function WebGLBackground() {
         mouse: gl.getUniformLocation(shaderProgram, "uMouse"),
         resolution: gl.getUniformLocation(shaderProgram, "uResolution"),
       },
-    }
+    };
 
-    programInfoRef.current = programInfo
+    programInfoRef.current = programInfo;
 
     // Create the buffers
-    const buffers = initBuffers(gl)
-    buffersRef.current = buffers
+    const buffers = initBuffers(gl);
+    buffersRef.current = buffers;
 
     // Draw the scene initially
     // drawScene(gl, programInfo, buffers, time, mouse, resolution)
 
-    let then = 0
-
+    let then = 0;
     // Draw the scene repeatedly
     function render(now: number) {
-      now *= 0.001 // convert to seconds
-      const deltaTime = now - then
-      then = now
-      setTime(now)
+      now *= 0.001; // convert to seconds
+      then = now;
+      setTime(now);
 
       // drawScene(gl, programInfo, buffers, now, mouse, resolution)
-      drawScene(gl, programInfo, buffers, now, mouse, resolution, shaderProgram)
+      drawScene(
+        gl!,
+        programInfo,
+        buffers,
+        now,
+        mouse,
+        resolution,
+        shaderProgram!
+      );
 
-      requestAnimationFrame(render)
+      requestAnimationFrame(render);
     }
-    requestAnimationFrame(render)
+    requestAnimationFrame(render);
 
     return () => {
-      window.removeEventListener("resize", setCanvasSize)
-      window.removeEventListener("mousemove", handleMouseMove)
-    }
-  }, [])
+      window.removeEventListener("resize", setCanvasSize);
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
 
   // Initialize the buffers
   function initBuffers(gl: WebGLRenderingContext) {
     // Create a buffer for the square's positions
-    const positionBuffer = gl.createBuffer()
+    const positionBuffer = gl.createBuffer();
 
     // Select the positionBuffer as the one to apply buffer operations to
-    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer)
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
 
     // Create an array of positions for the square
-    const positions = [-1.0, 1.0, 1.0, 1.0, -1.0, -1.0, 1.0, -1.0]
+    const positions = [-1.0, 1.0, 1.0, 1.0, -1.0, -1.0, 1.0, -1.0];
 
     // Pass the list of positions into WebGL to build the shape
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW)
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
 
     // Create a buffer for texture coordinates
-    const textureCoordBuffer = gl.createBuffer()
-    gl.bindBuffer(gl.ARRAY_BUFFER, textureCoordBuffer)
+    const textureCoordBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, textureCoordBuffer);
 
     // Create an array of texture coordinates
-    const textureCoordinates = [0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0]
+    const textureCoordinates = [0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0];
 
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(textureCoordinates), gl.STATIC_DRAW)
+    gl.bufferData(
+      gl.ARRAY_BUFFER,
+      new Float32Array(textureCoordinates),
+      gl.STATIC_DRAW
+    );
 
     return {
       position: positionBuffer,
       textureCoord: textureCoordBuffer,
-    }
+    };
   }
 
   // Draw the scene
@@ -300,107 +308,135 @@ export default function WebGLBackground() {
     time: number,
     mouse: { x: number; y: number },
     resolution: { width: number; height: number },
-    shaderProgram: WebGLProgram,
+    shaderProgram: WebGLProgram
   ) {
-    if (!programInfo || !buffers) return
+    if (!programInfo || !buffers) return;
 
-    gl.clearColor(0.0, 0.0, 0.0, 1.0)
-    gl.clearDepth(1.0)
-    gl.disable(gl.DEPTH_TEST)
-    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
+    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    gl.clearDepth(1.0);
+    gl.disable(gl.DEPTH_TEST);
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
     // Tell WebGL to use our program when drawing
     // gl.useProgram(programInfo.program)
-    gl.useProgram(shaderProgram)
+    gl.useProgram(shaderProgram);
 
     // Set the shader uniforms
-    gl.uniform1f(programInfo.uniformLocations.time, time)
-    gl.uniform2f(programInfo.uniformLocations.mouse, mouse.x, mouse.y)
-    gl.uniform2f(programInfo.uniformLocations.resolution, resolution.width, resolution.height)
+    gl.uniform1f(programInfo.uniformLocations.time, time);
+    gl.uniform2f(programInfo.uniformLocations.mouse, mouse.x, mouse.y);
+    gl.uniform2f(
+      programInfo.uniformLocations.resolution,
+      resolution.width,
+      resolution.height
+    );
 
     // Tell WebGL how to pull out the positions from the position buffer
     {
-      const numComponents = 2 // pull out 2 values per iteration
-      const type = gl.FLOAT // the data in the buffer is 32bit floats
-      const normalize = false // don't normalize
-      const stride = 0 // how many bytes to get from one set of values to the next
-      const offset = 0 // how many bytes inside the buffer to start from
-      gl.bindBuffer(gl.ARRAY_BUFFER, buffers.position)
-      gl.vertexAttribPointer(programInfo.attribLocations.vertexPosition, numComponents, type, normalize, stride, offset)
-      gl.enableVertexAttribArray(programInfo.attribLocations.vertexPosition)
+      const numComponents = 2; // pull out 2 values per iteration
+      const type = gl.FLOAT; // the data in the buffer is 32bit floats
+      const normalize = false; // don't normalize
+      const stride = 0; // how many bytes to get from one set of values to the next
+      const offset = 0; // how many bytes inside the buffer to start from
+      gl.bindBuffer(gl.ARRAY_BUFFER, buffers.position);
+      gl.vertexAttribPointer(
+        programInfo.attribLocations.vertexPosition,
+        numComponents,
+        type,
+        normalize,
+        stride,
+        offset
+      );
+      gl.enableVertexAttribArray(programInfo.attribLocations.vertexPosition);
     }
 
     // Tell WebGL how to pull out the texture coordinates from buffer
     {
-      const numComponents = 2
-      const type = gl.FLOAT
-      const normalize = false
-      const stride = 0
-      const offset = 0
-      gl.bindBuffer(gl.ARRAY_BUFFER, buffers.textureCoord)
-      gl.vertexAttribPointer(programInfo.attribLocations.textureCoord, numComponents, type, normalize, stride, offset)
-      gl.enableVertexAttribArray(programInfo.attribLocations.textureCoord)
+      const numComponents = 2;
+      const type = gl.FLOAT;
+      const normalize = false;
+      const stride = 0;
+      const offset = 0;
+      gl.bindBuffer(gl.ARRAY_BUFFER, buffers.textureCoord);
+      gl.vertexAttribPointer(
+        programInfo.attribLocations.textureCoord,
+        numComponents,
+        type,
+        normalize,
+        stride,
+        offset
+      );
+      gl.enableVertexAttribArray(programInfo.attribLocations.textureCoord);
     }
 
     // Draw the square
     {
-      const offset = 0
-      const vertexCount = 4
-      gl.drawArrays(gl.TRIANGLE_STRIP, offset, vertexCount)
+      const offset = 0;
+      const vertexCount = 4;
+      gl.drawArrays(gl.TRIANGLE_STRIP, offset, vertexCount);
     }
   }
 
   // Initialize a shader program
-  function initShaderProgram(gl: WebGLRenderingContext, vsSource: string, fsSource: string) {
-    const vertexShader = loadShader(gl, gl.VERTEX_SHADER, vsSource)
-    const fragmentShader = loadShader(gl, gl.FRAGMENT_SHADER, fsSource)
+  function initShaderProgram(
+    gl: WebGLRenderingContext,
+    vsSource: string,
+    fsSource: string
+  ) {
+    const vertexShader = loadShader(gl, gl.VERTEX_SHADER, vsSource);
+    const fragmentShader = loadShader(gl, gl.FRAGMENT_SHADER, fsSource);
 
     if (!vertexShader || !fragmentShader) {
-      return null
+      return null;
     }
 
     // Create the shader program
-    const shaderProgram = gl.createProgram()
+    const shaderProgram = gl.createProgram();
     if (!shaderProgram) {
-      return null
+      return null;
     }
 
-    gl.attachShader(shaderProgram, vertexShader)
-    gl.attachShader(shaderProgram, fragmentShader)
-    gl.linkProgram(shaderProgram)
+    gl.attachShader(shaderProgram, vertexShader);
+    gl.attachShader(shaderProgram, fragmentShader);
+    gl.linkProgram(shaderProgram);
 
     // If creating the shader program failed, alert
     if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
-      console.error("Unable to initialize the shader program: " + gl.getProgramInfoLog(shaderProgram))
-      return null
+      console.error(
+        "Unable to initialize the shader program: " +
+          gl.getProgramInfoLog(shaderProgram)
+      );
+      return null;
     }
 
-    return shaderProgram
+    return shaderProgram;
   }
 
   // Creates a shader of the given type, uploads the source and compiles it
   function loadShader(gl: WebGLRenderingContext, type: number, source: string) {
-    const shader = gl.createShader(type)
+    const shader = gl.createShader(type);
 
     if (!shader) {
-      console.error("An error occurred creating the shaders")
-      return null
+      console.error("An error occurred creating the shaders");
+      return null;
     }
 
     // Send the source to the shader object
-    gl.shaderSource(shader, source)
+    gl.shaderSource(shader, source);
 
     // Compile the shader program
-    gl.compileShader(shader)
+    gl.compileShader(shader);
 
     // See if it compiled successfully
     if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-      console.error("An error occurred compiling the shaders: " + gl.getShaderInfoLog(shader))
-      gl.deleteShader(shader)
-      return null
+      console.error(
+        "An error occurred compiling the shaders: " +
+          gl.getShaderInfoLog(shader)
+      );
+      gl.deleteShader(shader);
+      return null;
     }
 
-    return shader
+    return shader;
   }
 
   // Fallback gradient if WebGL is not supported
@@ -409,13 +445,18 @@ export default function WebGLBackground() {
       <div
         className="absolute inset-0 bg-gradient-to-b from-gray-900 via-black to-gray-900"
         style={{
-          backgroundImage: "radial-gradient(circle at 50% 50%, rgba(255, 107, 0, 0.15), transparent 70%)",
+          backgroundImage:
+            "radial-gradient(circle at 50% 50%, rgba(255, 107, 0, 0.15), transparent 70%)",
         }}
       />
-    )
+    );
   }
 
   return (
-    <canvas ref={canvasRef} className="w-full h-full object-cover" style={{ position: "absolute", top: 0, left: 0 }} />
-  )
+    <canvas
+      ref={canvasRef}
+      className="w-full h-full object-cover"
+      style={{ position: "absolute", top: 0, left: 0 }}
+    />
+  );
 }

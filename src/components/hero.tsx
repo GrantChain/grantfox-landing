@@ -1,36 +1,44 @@
-"use client"
+"use client";
 
-import { useRef, useEffect, useState } from "react"
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, ChevronRight } from "lucide-react"
-import WebGLBackground from "@/components/webgl-background"
+import { useRef, useEffect, useState } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, ChevronRight } from "lucide-react";
+import WebGLBackground from "@/components/webgl-background";
 
 export default function Hero() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [isVisible, setIsVisible] = useState(false)
-  const [currentWordIndex, setCurrentWordIndex] = useState(0)
-  const words = ["Blockchains", "DAOs", "Hackathons", "Events"]
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [, setIsVisible] = useState(false);
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const words = ["Blockchains", "DAOs", "Hackathons", "Events"];
 
   useEffect(() => {
-    setIsVisible(true)
+    setIsVisible(true);
     const interval = setInterval(() => {
-      setCurrentWordIndex((prev) => (prev + 1) % words.length)
-    }, 2000)
-    return () => clearInterval(interval)
-  }, [words.length])
+      setCurrentWordIndex((prev) => (prev + 1) % words.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [words.length]);
 
   // Parallax effect for scrolling
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
-  })
+  });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden">
+    <section
+      ref={containerRef}
+      className="relative min-h-screen flex items-center overflow-hidden"
+    >
       <div className="absolute inset-0 z-0">
         <WebGLBackground />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/90 pointer-events-none" />
@@ -92,7 +100,8 @@ export default function Hero() {
               top: `${Math.random() * 100}%`,
               width: `${Math.random() * 150 + 50}px`,
               height: `${Math.random() * 150 + 50}px`,
-              clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+              clipPath:
+                "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
               opacity: Math.random() * 0.2 + 0.1,
             }}
           />
@@ -106,7 +115,13 @@ export default function Hero() {
         animate={{ opacity: 0.15, scale: 1 }}
         transition={{ duration: 1, delay: 0.5 }}
       >
-        <svg width="400" height="400" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          width="400"
+          height="400"
+          viewBox="0 0 100 100"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <motion.path
             d="M50 10 L80 40 L50 90 L20 40 Z"
             fill="url(#orangeGradient)"
@@ -162,7 +177,13 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 1.5 }}
           />
           <defs>
-            <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient
+              id="orangeGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
               <stop offset="0%" stopColor="#ff6b00" />
               <stop offset="100%" stopColor="#ff9500" />
             </linearGradient>
@@ -171,7 +192,10 @@ export default function Hero() {
       </motion.div>
 
       {/* Main content with parallax effect */}
-      <motion.div className="container mx-auto px-4 md:px-6 relative z-20 pt-20" style={{ y, opacity }}>
+      <motion.div
+        className="container mx-auto px-4 md:px-6 relative z-20 pt-20"
+        style={{ y, opacity }}
+      >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left side - Title and description */}
           <div className="lg:col-span-7 space-y-8">
@@ -183,7 +207,9 @@ export default function Hero() {
               className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-orange-500/20 to-orange-500/5 border border-orange-500/20 backdrop-blur-sm"
             >
               <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
-              <span className="text-orange-400 text-sm font-medium">Web3 Grants Revolution</span>
+              <span className="text-orange-400 text-sm font-medium">
+                Web3 Grants Revolution
+              </span>
             </motion.div>
 
             {/* Main title with creative layout */}
@@ -234,8 +260,10 @@ export default function Hero() {
             >
               <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-orange-500 to-transparent"></div>
               <p className="text-gray-300 text-lg pl-4 max-w-xl">
-                GrantFox is an open-source platform using Trustless Work smart escrows to ensure secure milestone-based
-                funding for your projects. No more trust issues, just transparent and efficient grant distribution.
+                GrantFox is an open-source platform using Trustless Work smart
+                escrows to ensure secure milestone-based funding for your
+                projects. No more trust issues, just transparent and efficient
+                grant distribution.
               </p>
             </motion.div>
 
@@ -291,16 +319,30 @@ export default function Hero() {
                   <div className="flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <div className="w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M12 2L20 7V17L12 22L4 17V7L12 2Z" stroke="#ff6b00" strokeWidth="2" />
+                        <svg
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 2L20 7V17L12 22L4 17V7L12 2Z"
+                            stroke="#ff6b00"
+                            strokeWidth="2"
+                          />
                         </svg>
                       </div>
                       <div>
                         <h3 className="text-white font-medium">Smart Escrow</h3>
-                        <p className="text-gray-400 text-sm">Trustless Funding</p>
+                        <p className="text-gray-400 text-sm">
+                          Trustless Funding
+                        </p>
                       </div>
                     </div>
-                    <div className="px-2 py-1 bg-orange-500/10 rounded text-orange-400 text-sm">Active</div>
+                    <div className="px-2 py-1 bg-orange-500/10 rounded text-orange-400 text-sm">
+                      Active
+                    </div>
                   </div>
 
                   <div className="space-y-3">
@@ -309,7 +351,11 @@ export default function Hero() {
                         className="h-full bg-gradient-to-r from-orange-600 to-orange-400 rounded-full"
                         initial={{ width: "0%" }}
                         animate={{ width: "65%" }}
-                        transition={{ delay: 1.2, duration: 1.5, ease: "easeOut" }}
+                        transition={{
+                          delay: 1.2,
+                          duration: 1.5,
+                          ease: "easeOut",
+                        }}
                       ></motion.div>
                     </div>
                     <div className="flex justify-between text-sm">
@@ -335,7 +381,9 @@ export default function Hero() {
                       <p className="text-orange-400 text-sm">3 days left</p>
                     </div>
                     <div className="p-3 bg-gray-800/50 rounded-lg border border-gray-700">
-                      <p className="text-white text-sm">Frontend Implementation</p>
+                      <p className="text-white text-sm">
+                        Frontend Implementation
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -359,9 +407,12 @@ export default function Hero() {
           className="flex flex-col items-center gap-2"
         >
           <span className="text-gray-400 text-sm">Scroll to explore</span>
-          <ArrowRight size={20} className="text-orange-400 transform rotate-90" />
+          <ArrowRight
+            size={20}
+            className="text-orange-400 transform rotate-90"
+          />
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
