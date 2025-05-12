@@ -233,7 +233,6 @@ export default function Hero() {
                 transition={{ delay: 0.7, duration: 0.8 }}
                 className="flex items-center gap-2 text-xl md:text-2xl text-gray-400"
               >
-                <span>Ideal for</span>
                 <div className="h-8 overflow-hidden relative">
                   <AnimatePresence mode="wait">
                     <motion.span

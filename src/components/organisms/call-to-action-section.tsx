@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 export default function CallToActionSection() {
   return (
@@ -37,7 +37,7 @@ export default function CallToActionSection() {
                 top: `${Math.random() * 100}%`,
                 width: `${Math.random() * 30 + 20}%`,
                 height: `${Math.random() * 2 + 1}px`,
-                opacity: Math.random() * 0.5 + 0.1,
+                opacity: Math.random() * 0.15 + 0.05,
               }}
             />
           ))}
@@ -57,7 +57,8 @@ export default function CallToActionSection() {
             </h2>
 
             <p className="text-lg text-gray-300 mb-8">
-              Join the future of secure, transparent, and efficient grant funding with GrantFox.
+              Join the future of secure, transparent, and efficient grant
+              funding with GrantFox.
             </p>
 
             <motion.div
@@ -75,7 +76,11 @@ export default function CallToActionSection() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
 
-              <Button variant="outline" size="lg" className="border-gray-700 text-gray-300 hover:bg-gray-800">
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-gray-700 text-gray-300 hover:bg-gray-800"
+              >
                 Schedule Demo
               </Button>
             </motion.div>
@@ -83,5 +88,5 @@ export default function CallToActionSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
