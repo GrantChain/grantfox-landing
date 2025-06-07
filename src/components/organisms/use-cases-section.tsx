@@ -56,7 +56,7 @@ export default function UseCasesSection() {
 
   return (
     <section id="use-cases" className="py-20 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(255,107,0,0.1),transparent_70%)]" />
+      <div className="absolute inset-0" />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <motion.div
@@ -67,7 +67,7 @@ export default function UseCasesSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-orange-300">
-            Use Casessdasd
+            Use Cases
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
             GrantFox is designed to serve various funding scenarios in the Web3

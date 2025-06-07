@@ -1,53 +1,61 @@
-"use client"
+"use client";
 
-import { motion, useScroll, useTransform } from "framer-motion"
-import { useRef } from "react"
-import { Card, CardContent } from "@/components/ui/card"
-import { CheckCircle2, FileText, Users, Wallet, Award } from "lucide-react"
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { CheckCircle2, FileText, Users, Wallet, Award } from "lucide-react";
 
 const steps = [
   {
     icon: <FileText className="h-10 w-10 text-orange-500" />,
     title: "Create Grant Program",
-    description: "Define your grant program parameters, funding amounts, and milestone requirements.",
+    description:
+      "Define your grant program parameters, funding amounts, and milestone requirements.",
   },
   {
     icon: <Users className="h-10 w-10 text-orange-500" />,
     title: "Applicants Submit Proposals",
-    description: "Builders submit detailed proposals with milestone deliverables and timelines.",
+    description:
+      "Builders submit detailed proposals with milestone deliverables and timelines.",
   },
   {
     icon: <CheckCircle2 className="h-10 w-10 text-orange-500" />,
     title: "Review and Approve",
-    description: "Review submissions, provide feedback, and approve promising projects.",
+    description:
+      "Review submissions, provide feedback, and approve promising projects.",
   },
   {
     icon: <Wallet className="h-10 w-10 text-orange-500" />,
     title: "Fund via Smart Escrow",
-    description: "Funds are locked in smart escrows and released as milestones are completed.",
+    description:
+      "Funds are locked in smart escrows and released as milestones are completed.",
   },
   {
     icon: <Award className="h-10 w-10 text-orange-500" />,
     title: "Milestone Verification",
-    description: "Verify completed milestones through on-chain proof of work and release funds automatically.",
+    description:
+      "Verify completed milestones through on-chain proof of work and release funds automatically.",
   },
-]
+];
 
 export default function HowItWorksSection() {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
-  })
+  });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
-  const y = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [100, 0, 0, 100])
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const y = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [100, 0, 0, 100]);
 
   return (
     <section id="how-it-works" className="py-20 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,107,0,0.1),transparent_70%)]" />
+      <div className="absolute inset-0" />
 
-      <div ref={containerRef} className="container mx-auto px-4 md:px-6 relative z-10">
+      <div
+        ref={containerRef}
+        className="container mx-auto px-4 md:px-6 relative z-10"
+      >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -59,7 +67,8 @@ export default function HowItWorksSection() {
             How It Works
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            GrantFox simplifies the grant funding process with a secure, transparent workflow.
+            GrantFox simplifies the grant funding process with a secure,
+            transparent workflow.
           </p>
         </motion.div>
 
@@ -84,7 +93,9 @@ export default function HowItWorksSection() {
                       <div className="flex items-start gap-4">
                         <div className="mt-1">{step.icon}</div>
                         <div>
-                          <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
+                          <h3 className="text-xl font-bold text-white mb-2">
+                            {step.title}
+                          </h3>
                           <p className="text-gray-400">{step.description}</p>
                         </div>
                       </div>
@@ -103,5 +114,5 @@ export default function HowItWorksSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

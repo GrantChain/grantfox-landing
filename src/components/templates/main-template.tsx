@@ -1,8 +1,8 @@
-import type React from "react"
-import Header from "@/components/organisms/header"
+import type React from "react";
+import Header from "@/components/organisms/header";
 
 interface MainTemplateProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export default function MainTemplate({ children }: MainTemplateProps) {
@@ -11,5 +11,5 @@ export default function MainTemplate({ children }: MainTemplateProps) {
       <Header />
       {children}
     </main>
-  )
+  );
 }

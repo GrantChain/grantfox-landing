@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
-import { useMediaQuery } from "@/hooks/use-media-query"
-import Logo from "@/components/atoms/logo"
-import NavLink from "@/components/molecules/nav-link"
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import Logo from "@/components/atoms/logo";
+import NavLink from "@/components/molecules/nav-link";
 
 export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const isMobile = useMediaQuery("(max-width: 768px)")
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navVariants = {
     hidden: { opacity: 0, y: -20 },
@@ -31,7 +31,7 @@ export default function Header() {
         delayChildren: 0.2,
       },
     },
-  }
+  };
 
   return (
     <header
@@ -44,11 +44,21 @@ export default function Header() {
           <Logo />
 
           {isMobile ? (
-            <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-white"
+            >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </Button>
           ) : (
-            <motion.nav variants={navVariants} initial="hidden" animate="visible" className="flex items-center gap-8">
+            <motion.nav
+              variants={navVariants}
+              initial="hidden"
+              animate="visible"
+              className="flex items-center gap-8"
+            >
               <NavLink href="#features" animate delay={0.1}>
                 Features
               </NavLink>
@@ -84,13 +94,25 @@ export default function Header() {
             exit={{ opacity: 0, height: 0 }}
             className="mt-4 flex flex-col gap-4 pb-4"
           >
-            <NavLink href="#features" className="py-2" onClick={() => setIsMenuOpen(false)}>
+            <NavLink
+              href="#features"
+              className="py-2"
+              onClick={() => setIsMenuOpen(false)}
+            >
               Features
             </NavLink>
-            <NavLink href="#how-it-works" className="py-2" onClick={() => setIsMenuOpen(false)}>
+            <NavLink
+              href="#how-it-works"
+              className="py-2"
+              onClick={() => setIsMenuOpen(false)}
+            >
               How It Works
             </NavLink>
-            <NavLink href="#use-cases" className="py-2" onClick={() => setIsMenuOpen(false)}>
+            <NavLink
+              href="#use-cases"
+              className="py-2"
+              onClick={() => setIsMenuOpen(false)}
+            >
               Use Cases
             </NavLink>
             <Button
@@ -104,5 +126,5 @@ export default function Header() {
         )}
       </div>
     </header>
-  )
+  );
 }
