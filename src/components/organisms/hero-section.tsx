@@ -33,7 +33,7 @@ export default function HeroSection() {
     >
       <div className="absolute inset-0 z-0">
         <WebGLBackground />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/90 pointer-events-none" />
+        <div className="absolute inset-0 bg-black pointer-events-none" />
       </div>
 
       {/* Animated elements */}

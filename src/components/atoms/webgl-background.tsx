@@ -156,53 +156,40 @@ export default function WebGLBackground() {
         vec2 mouseOffset = (uMouse - 0.5) * 0.1;
         uv += mouseOffset;
         
-        // Create a base color
-        vec3 color = vec3(0.02, 0.02, 0.04);
+        // Create a base color - completely dark
+        vec3 color = vec3(0.0, 0.0, 0.0);
         
-        // Distance from center for vignette and glow
+        // Distance from center
         float dist = length(uv);
         
-        // Create circular gradient
-        float circle = smoothstep(1.8, 0.0, dist);
+        // Minimal pattern visibility
+        float circle = smoothstep(1.0, 0.0, dist);
         
-        // Add some noise patterns with mouse influence
-        for (float i = 1.0; i < 5.0; i++) {
+        // Add very subtle noise patterns
+        for (float i = 1.0; i < 3.0; i++) {
           float t = uTime * 0.1 / i;
           float scale = 3.0 + i * 0.5;
           vec2 noiseUv = uv * scale + vec2(t, t * 0.5) + mouseOffset * i;
           float noise = snoise(noiseUv);
           
-          // Add orange glow with noise
-          vec3 glow = vec3(1.0, 0.42, 0.0) * noise * circle * 0.2;
-          color += glow;
+          // Just barely visible dark pattern
+          vec3 pattern = vec3(0.02, 0.02, 0.02) * noise * circle * 0.05;
+          color += pattern;
           
-          // Add some hexagonal patterns
+          // Extremely subtle hexagonal pattern
           vec2 hexUv = uv * (2.0 + i) + vec2(sin(t), cos(t * 0.7));
           float hexPattern = hexCoords(hexUv).x;
           hexPattern = smoothstep(0.1, 0.2, hexPattern);
-          color += vec3(1.0, 0.5, 0.0) * (1.0 - hexPattern) * 0.04 * circle;
-          
-          // Add voronoi cells
-          float cells = voronoi(uv * (1.0 + i * 0.5) + vec2(t * 0.5, t * 0.3));
-          color += vec3(1.0, 0.6, 0.2) * (1.0 - cells) * 0.03 * circle;
+          color += vec3(0.01, 0.01, 0.01) * (1.0 - hexPattern) * 0.01 * circle;
         }
         
-        // Add subtle pulsing effect
-        float pulse = 0.5 + 0.5 * sin(uTime * 0.5);
-        color += vec3(1.0, 0.5, 0.0) * pulse * 0.05 * (1.0 - dist);
-        
-        // Add vignette effect
-        float vignette = 1.0 - dist * 0.7;
-        vignette = smoothstep(0.0, 1.0, vignette);
+        // Strong vignette to ensure edges are completely dark
+        float vignette = 1.0 - dist;
+        vignette = smoothstep(0.0, 0.5, vignette);
         color *= vignette;
         
-        // Add subtle scanlines
-        float scanline = sin(uv.y * 100.0 + uTime) * 0.02 + 1.0;
-        color *= scanline;
-        
-        // Add subtle noise
-        float staticNoise = snoise(uv * 100.0 + uTime * 10.0) * 0.015 + 1.0;
-        color *= staticNoise;
+        // Ensure the background stays very dark
+        color = min(color, vec3(0.03));
         
         gl_FragColor = vec4(color, 1.0);
       }
