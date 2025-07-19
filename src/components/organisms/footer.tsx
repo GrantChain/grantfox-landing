@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { Github, Twitter, DiscIcon as Discord, Linkedin } from "lucide-react";
 import Logo from "@/components/atoms/logo";
+import WaitlistForm from "@/components/waitlist-form";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -18,7 +19,7 @@ export default function Footer() {
               secure milestone-based funding.
             </p>
 
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 mb-4">
               <Link
                 href="#"
                 className="text-gray-400 hover:text-orange-500 transition-colors"

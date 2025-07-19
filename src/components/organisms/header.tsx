@@ -7,6 +7,9 @@ import { Menu, X } from "lucide-react";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import Logo from "@/components/atoms/logo";
 import NavLink from "@/components/molecules/nav-link";
+import WaitlistForm from "@/components/waitlist-form";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -41,7 +44,22 @@ export default function Header() {
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
-          <Logo />
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="/images/logo.png"
+              alt="GrantFox Logo"
+              width={40}
+              height={40}
+              className="w-10 h-10"
+            />
+            <motion.span
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-orange-300"
+            >
+              GrantFox
+            </motion.span>
+          </Link>
 
           {isMobile ? (
             <Button
