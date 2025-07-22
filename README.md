@@ -2,7 +2,7 @@
 
 # GrantFox
 
-Grants Open Source Platform.
+Payouts Open Source Platform.
 
 ---
 
