@@ -1,23 +1,24 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, ChevronRight } from "lucide-react"
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 interface CtaButtonsProps {
-  primaryText?: string
-  secondaryText?: string
-  primaryHref?: string
-  secondaryHref?: string
-  delay?: number
-  className?: string
+  primaryText?: string;
+  secondaryText?: string;
+  primaryHref?: string;
+  secondaryHref?: string;
+  delay?: number;
+  className?: string;
 }
 
 export default function CtaButtons({
   primaryText = "Get Started",
   secondaryText = "Learn More",
-  primaryHref = "#",
-  secondaryHref = "#",
+  primaryHref = "https://dapp.grantfox.xyz",
+  secondaryHref = "https://docs.grantfox.xyz",
   delay = 1.1,
   className = "",
 }: CtaButtonsProps) {
@@ -33,13 +34,13 @@ export default function CtaButtons({
         className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white border-none rounded-lg group relative overflow-hidden"
         asChild
       >
-        <a href={primaryHref}>
+        <Link href={primaryHref} target="_blank">
           <span className="relative z-10 flex items-center">
             {primaryText}
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </span>
           <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>
-        </a>
+        </Link>
       </Button>
 
       <Button
@@ -48,13 +49,13 @@ export default function CtaButtons({
         className="border-gray-700 text-gray-300 hover:bg-gray-800 backdrop-blur-sm rounded-lg group"
         asChild
       >
-        <a href={secondaryHref}>
+        <Link href={secondaryHref} target="_blank">
           <span className="flex items-center">
             {secondaryText}
             <ChevronRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </span>
-        </a>
+        </Link>
       </Button>
     </motion.div>
-  )
+  );
 }

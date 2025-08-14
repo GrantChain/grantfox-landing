@@ -24,14 +24,14 @@ const useCases = [
       "Distribute community treasury funds to builders with decentralized governance and automated payments.",
   },
   {
-    icon: <Code className="h-12 w-12 text-orange-500" />,
-    title: "Hackathons",
+    icon: <Award className="h-12 w-12 text-orange-500" />,
+    title: "Hackathons & Events",
     description:
-      "Run hackathons with prize pools secured in smart escrows and released based on judging outcomes.",
+      "Run hackathons or events with prize pools secured in smart escrows and released based on judging outcomes.",
   },
   {
-    icon: <Award className="h-12 w-12 text-orange-500" />,
-    title: "Events",
+    icon: <Code className="h-12 w-12 text-orange-500" />,
+    title: "Bounties",
     description:
       "Organize bounty programs and challenges with secure funding and verifiable completion criteria.",
   },

@@ -46,11 +46,11 @@ export default function Header() {
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/images/logo.png"
+              src="/favicon.ico"
               alt="GrantFox Logo"
-              width={40}
-              height={40}
-              className="w-10 h-10"
+              width={70}
+              height={70}
+              className="w-20 h-20"
             />
             <motion.span
               initial={{ opacity: 0, x: -10 }}
@@ -93,12 +93,14 @@ export default function Header() {
                   visible: { opacity: 1, y: 0 },
                 }}
               >
-                <Button
-                  variant="outline"
-                  className="border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white transition-colors"
-                >
-                  Launch App
-                </Button>
+                <Link href="https://dapp.grantfox.xyz" target="_blank">
+                  <Button
+                    variant="outline"
+                    className="border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white transition-colors cursor-pointer"
+                  >
+                    Launch App
+                  </Button>
+                </Link>
               </motion.div>
             </motion.nav>
           )}
@@ -133,13 +135,15 @@ export default function Header() {
             >
               Use Cases
             </NavLink>
-            <Button
-              variant="outline"
-              className="border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white transition-colors w-full"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Launch App
-            </Button>
+            <Link href="https://dapp.grantfox.xyz" target="_blank">
+              <Button
+                variant="outline"
+                className="border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white transition-colors w-full cursor-pointer"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Launch App
+              </Button>
+            </Link>
           </motion.div>
         )}
       </div>

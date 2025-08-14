@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function CallToActionSection() {
   return (
@@ -18,12 +19,12 @@ export default function CallToActionSection() {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-3xl md:text-5xl font-bold mb-10 bg-clip-text text-transparent bg-gradient-to-r from-white to-orange-300">
-              Ready to Transform Your Grant Program?
+              Ready to Transform Your Funding Process?
             </h2>
 
             <p className="text-lg text-gray-300 mb-8">
-              Join the future of secure, transparent, and efficient grant
-              funding with GrantFox.
+              Join the future of secure, transparent, and efficient payouts with
+              GrantFox.
             </p>
 
             <motion.div
@@ -33,21 +34,15 @@ export default function CallToActionSection() {
               transition={{ delay: 0.2, duration: 0.5 }}
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white border-none"
-              >
-                Launch App
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-gray-700 text-gray-300 hover:bg-gray-800"
-              >
-                Schedule Demo
-              </Button>
+              <Link href="https://dapp.grantfox.xyz" target="_blank">
+                <Button
+                  size="lg"
+                  className="cursor-pointer bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white border-none"
+                >
+                  Launch App
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
             </motion.div>
           </motion.div>
         </div>

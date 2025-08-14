@@ -259,10 +259,9 @@ export default function Hero() {
             >
               <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-orange-500 to-transparent"></div>
               <p className="text-gray-300 text-lg pl-4 max-w-xl">
-                GrantFox is an open-source platform using Trustless Work smart
-                escrows to ensure secure milestone-based funding for your
-                projects. No more trust issues, just transparent and efficient
-                grant distribution.
+                GrantFox is an open-source platform using smart escrows to
+                ensure secure milestone-based funding for your projects. No more
+                trust issues, just transparent and efficient grant distribution.
               </p>
             </motion.div>
 

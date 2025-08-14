@@ -8,13 +8,13 @@ import { CheckCircle2, FileText, Users, Wallet, Award } from "lucide-react";
 const steps = [
   {
     icon: <FileText className="h-10 w-10 text-orange-500" />,
-    title: "Create Grant Program",
+    title: "Create Payout",
     description:
-      "Define your grant program parameters, funding amounts, and milestone requirements.",
+      "Define your payout parameters, funding amounts, and milestone requirements.",
   },
   {
     icon: <Users className="h-10 w-10 text-orange-500" />,
-    title: "Applicants Submit Proposals",
+    title: "Assign a Grantee User",
     description:
       "Builders submit detailed proposals with milestone deliverables and timelines.",
   },
@@ -22,7 +22,7 @@ const steps = [
     icon: <CheckCircle2 className="h-10 w-10 text-orange-500" />,
     title: "Review and Approve",
     description:
-      "Review submissions, provide feedback, and approve promising projects.",
+      "Review submissions, provide feedback, and approve expected results.",
   },
   {
     icon: <Wallet className="h-10 w-10 text-orange-500" />,

@@ -70,17 +70,9 @@ export default function HeroSection() {
 
             {/* Description with creative design */}
             <HeroDescription>
-              GrantFox is an open-source platform using{" "}
-              <Link
-                className="text-orange-500 font-bold hover:text-orange-400"
-                href="https://www.trustlesswork.com"
-                target="_blank"
-              >
-                Trustless Work
-              </Link>{" "}
-              smart escrows to ensure secure milestone-based funding for your
-              projects. No more trust issues, just transparent and efficient
-              grant distribution.
+              GrantFox is an open-source platform using smart escrows to ensure
+              secure milestone-based funding for your projects. No more trust
+              issues, just transparent and efficient grant distribution.
             </HeroDescription>
 
             {/* CTA buttons */}

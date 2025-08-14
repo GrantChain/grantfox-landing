@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { Github, Twitter, DiscIcon as Discord, Linkedin } from "lucide-react";
 import Logo from "@/components/atoms/logo";
-import WaitlistForm from "@/components/waitlist-form";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -10,39 +9,35 @@ export default function Footer() {
   return (
     <footer className="bg-black border-t border-gray-800">
       <div className="container mx-auto px-4 md:px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-between">
           <div className="md:col-span-1">
-            <Logo />
+            <Logo size="lg" />
 
             <p className="text-gray-400 mb-6">
-              Open-source grants platform using Trustless Work smart escrows for
-              secure milestone-based funding.
+              Open-source grants platform using smart escrows for secure
+              milestone-based funding.
             </p>
 
             <div className="flex space-x-4 mb-4">
               <Link
-                href="#"
+                href="https://github.com/GrantChain"
+                target="_blank"
                 className="text-gray-400 hover:text-orange-500 transition-colors"
               >
                 <Github size={20} />
                 <span className="sr-only">GitHub</span>
               </Link>
               <Link
-                href="#"
+                href="https://x.com/itsgrantfox"
+                target="_blank"
                 className="text-gray-400 hover:text-orange-500 transition-colors"
               >
                 <Twitter size={20} />
                 <span className="sr-only">Twitter</span>
               </Link>
               <Link
-                href="#"
-                className="text-gray-400 hover:text-orange-500 transition-colors"
-              >
-                <Discord size={20} />
-                <span className="sr-only">Discord</span>
-              </Link>
-              <Link
-                href="#"
+                href="https://www.linkedin.com/company/grantfox"
+                target="_blank"
                 className="text-gray-400 hover:text-orange-500 transition-colors"
               >
                 <Linkedin size={20} />
@@ -52,114 +47,15 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-white font-semibold mb-4">Product</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="#"
-                  className="text-gray-400 hover:text-orange-500 transition-colors"
-                >
-                  Features
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-gray-400 hover:text-orange-500 transition-colors"
-                >
-                  Use Cases
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-gray-400 hover:text-orange-500 transition-colors"
-                >
-                  Pricing
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-gray-400 hover:text-orange-500 transition-colors"
-                >
-                  Roadmap
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
             <h3 className="text-white font-semibold mb-4">Resources</h3>
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="#"
+                  href="https://docs.grantfox.xyz"
+                  target="_blank"
                   className="text-gray-400 hover:text-orange-500 transition-colors"
                 >
                   Documentation
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-gray-400 hover:text-orange-500 transition-colors"
-                >
-                  API Reference
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-gray-400 hover:text-orange-500 transition-colors"
-                >
-                  Tutorials
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-gray-400 hover:text-orange-500 transition-colors"
-                >
-                  Blog
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-white font-semibold mb-4">Company</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="#"
-                  className="text-gray-400 hover:text-orange-500 transition-colors"
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-gray-400 hover:text-orange-500 transition-colors"
-                >
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-gray-400 hover:text-orange-500 transition-colors"
-                >
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-gray-400 hover:text-orange-500 transition-colors"
-                >
-                  Privacy Policy
                 </Link>
               </li>
             </ul>
@@ -170,27 +66,6 @@ export default function Footer() {
           <p className="text-gray-500 text-sm">
             &copy; {currentYear} GrantFox. All rights reserved.
           </p>
-
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link
-              href="#"
-              className="text-gray-500 hover:text-orange-500 transition-colors text-sm"
-            >
-              Terms of Service
-            </Link>
-            <Link
-              href="#"
-              className="text-gray-500 hover:text-orange-500 transition-colors text-sm"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="#"
-              className="text-gray-500 hover:text-orange-500 transition-colors text-sm"
-            >
-              Cookie Policy
-            </Link>
-          </div>
         </div>
       </div>
     </footer>
