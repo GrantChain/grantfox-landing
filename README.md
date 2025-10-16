@@ -1,4 +1,4 @@
-<p align="center"> <img src="https://github.com/user-attachments/assets/25cfd5b8-e303-4af6-920e-e42d1ac8d418" alt="CLR-S (2)"> </p>
+<p align="center"> <img width="149" height="149" alt="GrantFox logo new png 2" src="https://github.com/user-attachments/assets/6fe435e0-4214-4dc2-be34-94b34f280504" /> </p>
 
 # GrantFox
 
