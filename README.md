@@ -2,7 +2,9 @@
 
 # GrantFox
 
-Payouts Open Source Platform.
+<p align="center"> OSS collaboration hub on the Stellar ecosystem. Bringing projects and talent together. </p>
+
+<p align="center"> For the community, by the community. </p>
 
 ---
 
