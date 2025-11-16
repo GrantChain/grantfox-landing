@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function CallToActionSection() {
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section id="call-to-action"className="py-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-black to-gray-900" />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -19,12 +19,11 @@ export default function CallToActionSection() {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-3xl md:text-5xl font-bold mb-10 bg-clip-text text-transparent bg-gradient-to-r from-white to-orange-300">
-              Ready to Transform Your Funding Process?
+              Ready to Accelerate Your Open-Source Journey?
             </h2>
 
             <p className="text-lg text-gray-300 mb-8">
-              Join the future of secure, transparent, and efficient payouts with
-              GrantFox.
+              Join the future of collaboration with GrantFox.
             </p>
 
             <motion.div
@@ -34,7 +33,7 @@ export default function CallToActionSection() {
               transition={{ delay: 0.2, duration: 0.5 }}
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
-              <Link href="https://dapp.grantfox.xyz" target="_blank">
+              <Link href="https://contribute.grantfox.xyz" target="_blank">
                 <Button
                   size="lg"
                   className="cursor-pointer bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white border-none"

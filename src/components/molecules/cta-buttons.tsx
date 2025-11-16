@@ -17,7 +17,7 @@ interface CtaButtonsProps {
 export default function CtaButtons({
   primaryText = "Get Started",
   secondaryText = "Learn More",
-  primaryHref = "https://dapp.grantfox.xyz",
+  primaryHref = "https://contribute.grantfox.xyz",
   secondaryHref = "https://docs.grantfox.xyz",
   delay = 1.1,
   className = "",

@@ -12,7 +12,6 @@ import CtaButtons from "@/components/molecules/cta-buttons";
 import ProjectCard from "@/components/molecules/project-card";
 import ScrollIndicator from "@/components/atoms/scroll-indicator";
 import Badge from "@/components/atoms/badge";
-import Link from "next/link";
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -62,17 +61,16 @@ export default function HeroSection() {
               className="inline-flex items-center gap-2 backdrop-blur-sm"
             >
               <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
-              <span>Web3 Grants Revolution</span>
+              <span>Built for the community</span>
             </Badge>
 
             {/* Main title with creative layout */}
-            <HeroTitle title={["Secure", "Milestone-Based", "Funding"]} />
+            <HeroTitle title={["The Open-Source", "Collaboration Hub", "for Web3"]} />
 
             {/* Description with creative design */}
             <HeroDescription>
-              GrantFox is an open-source platform using smart escrows to ensure
-              secure milestone-based funding for your projects. No more trust
-              issues, just transparent and efficient grant distribution.
+              GrantFox connects projects with talent. 
+              Discover, apply to issues, track progress, grow your reputation and collaborate seamlessly -all in one place.
             </HeroDescription>
 
             {/* CTA buttons */}

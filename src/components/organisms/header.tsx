@@ -7,7 +7,7 @@ import { Menu, X } from "lucide-react";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import Logo from "@/components/atoms/logo";
 import NavLink from "@/components/molecules/nav-link";
-import WaitlistForm from "@/components/waitlist-form";
+import WaitlistForm from "@/components/testimonials-section";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -83,8 +83,14 @@ export default function Header() {
               <NavLink href="#how-it-works" animate delay={0.2}>
                 How It Works
               </NavLink>
-              <NavLink href="#use-cases" animate delay={0.3}>
-                Use Cases
+              <NavLink href="#benefits" animate delay={0.3}>
+                Benefits
+              </NavLink>
+              <NavLink href="#call-to-action" animate delay={0.4}>
+                CTA
+              </NavLink>
+              <NavLink href="#testimonials" animate delay={0.5}>
+                Testimonials
               </NavLink>
 
               <motion.div
@@ -93,7 +99,7 @@ export default function Header() {
                   visible: { opacity: 1, y: 0 },
                 }}
               >
-                <Link href="https://dapp.grantfox.xyz" target="_blank">
+                <Link href="https://contribute.grantfox.xyz" target="_blank">
                   <Button
                     variant="outline"
                     className="border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white transition-colors cursor-pointer"
@@ -129,13 +135,27 @@ export default function Header() {
               How It Works
             </NavLink>
             <NavLink
-              href="#use-cases"
+              href="#benefits"
               className="py-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              Use Cases
+              Benefits
             </NavLink>
-            <Link href="https://dapp.grantfox.xyz" target="_blank">
+            <NavLink
+              href="#call-to-action"
+              className="py-2"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              CTA
+            </NavLink>
+            <NavLink
+              href="#testimonials"
+              className="py-2"
+              onClick={() => setIsMenuOpen(false)}
+            >
+             Testimonials
+            </NavLink>
+            <Link href="https://contribute.grantfox.xyz" target="_blank">
               <Button
                 variant="outline"
                 className="border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white transition-colors w-full cursor-pointer"

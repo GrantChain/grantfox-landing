@@ -8,33 +8,33 @@ import { CheckCircle2, FileText, Users, Wallet, Award } from "lucide-react";
 const steps = [
   {
     icon: <FileText className="h-10 w-10 text-orange-500" />,
-    title: "Create Payout",
+    title: "Apply to an issue",
     description:
-      "Define your payout parameters, funding amounts, and milestone requirements.",
+      "Contributors connect their GitHub account, discover Stellar projects, and apply on an open issue, explaining why they’re a good fit.",
   },
   {
     icon: <Users className="h-10 w-10 text-orange-500" />,
-    title: "Assign a Grantee User",
+    title: "Review and assign",
     description:
-      "Builders submit detailed proposals with milestone deliverables and timelines.",
+      "Maintainers review applications, check profiles, and assign the issue to the best-suited contributor, synced automatically with GitHub.",
   },
   {
     icon: <CheckCircle2 className="h-10 w-10 text-orange-500" />,
-    title: "Review and Approve",
+    title: "Work on the task",
     description:
-      "Review submissions, provide feedback, and approve expected results.",
-  },
-  {
-    icon: <Wallet className="h-10 w-10 text-orange-500" />,
-    title: "Fund via Smart Escrow",
-    description:
-      "Funds are locked in smart escrows and released as milestones are completed.",
+      "Contributor works on the issue and delivers a pull request. GrantFox tracks progress in real time.",
   },
   {
     icon: <Award className="h-10 w-10 text-orange-500" />,
-    title: "Milestone Verification",
+    title: "Validate and approve",
     description:
-      "Verify completed milestones through on-chain proof of work and release funds automatically.",
+      "The maintainer reviews the PR, requests changes if needed, and merges when the work meets the project’s standards. Status updates are reflected on both GrantFox and GitHub.",
+  },
+  {
+    icon: <Wallet className="h-10 w-10 text-orange-500" />,
+    title: "Rewards are sent",
+    description:
+      "Once the work is accepted, rewards can be distributed to both roles with smart escrows in USDC, for fully transparent, trustless payouts.",
   },
 ];
 
@@ -64,11 +64,11 @@ export default function HowItWorksSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-orange-300">
-            How It Works
+            How GrantFox Works
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            GrantFox simplifies the grant funding process with a secure,
-            transparent workflow.
+            GrantFox streamlines collaboration between projects and contributors, 
+            from first application to final reward.
           </p>
         </motion.div>
 

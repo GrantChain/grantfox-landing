@@ -1,85 +1,139 @@
 "use client"
 
 import { motion } from "framer-motion"
-import ProgressBar from "@/components/atoms/progress-bar"
+import React from "react"
 
-interface ProjectCardProps {
-  title?: string
-  subtitle?: string
-  status?: string
-  progress?: number
-  totalFunding?: string
-  releasedFunding?: string
-  nextMilestone?: string
-  daysLeft?: number
+interface ContributionCardProps {
+  repoName?: string
+  repoOwner?: string
+  issueTitle?: string
+  issueLabels?: string[]
+  applicants?: number
+  status?: "Open" | "Assigned" | "In Review"
+  contributorsCount?: number
+  prsMerged?: number
+  stars?: number // optional
   delay?: number
 }
 
+function GitHubIcon() {
+  return (
+    <img
+      src="/images/github-logo.png"
+      alt="Project logo"
+      className="w-10 h-10 object-contain"
+      aria-hidden
+    />
+  )
+}
+
+function StatusBadge({ status }: { status: ContributionCardProps["status"] }) {
+  const base = "px-3 py-1 rounded text-sm font-medium"
+  if (status === "Assigned") {
+    return <div className={base + " bg-orange-500/10 text-orange-400 border border-orange-500"}>{status}</div>
+  }
+  if (status === "In Review") {
+    return <div className={base + " bg-amber-500/8 text-amber-400 border border-amber-600"}>{status}</div>
+  }
+  return <div className={base + " bg-gray-800/60 text-gray-300 border border-gray-700"}>{status}</div>
+}
+
+function Stat({ label, value }: { label: string; value: number | string }) {
+  return (
+    <div className="space-y-1">
+      <p className="text-gray-400 text-sm">{label}</p>
+      <p className="text-white font-medium">{value}</p>
+    </div>
+  )
+}
+
 export default function ProjectCard({
-  title = "Smart Escrow",
-  subtitle = "Trustless Funding",
-  status = "Active",
-  progress = 65,
-  totalFunding = "120,000 USDC",
-  releasedFunding = "78,000 USDC",
-  nextMilestone = "Frontend Implementation",
-  daysLeft = 3,
+  repoName = "grantfox-landing",
+  repoOwner = "GrantFox",
+  issueTitle = "Add contribution card component",
+  issueLabels = ["frontend", "typescript", "good first issue"],
+  applicants = 5,
+  status = "Assigned",
+  contributorsCount = 12,
+  prsMerged = 87,
+  stars = 320,
   delay = 0.7,
-}: ProjectCardProps) {
+}: ContributionCardProps) {
   return (
     <motion.div
       className="lg:col-span-5"
-      initial={{ opacity: 0, x: 50 }}
+      initial={{ opacity: 0, x: 40 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ delay, duration: 1 }}
+      transition={{ delay, duration: 0.9 }}
     >
       <div className="relative">
         {/* Glowing effect behind card */}
-        <div className="absolute -inset-4 bg-orange-500/20 rounded-2xl blur-xl"></div>
+        <div className="absolute -inset-3 bg-orange-500/20 rounded-2xl blur-xl"></div>
 
         {/* Main card */}
-        <div className="relative bg-gray-900/80 backdrop-blur-sm border border-gray-800 rounded-xl p-6 overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 rounded-full blur-2xl -mr-16 -mt-16"></div>
-          <div className="absolute bottom-0 left-0 w-32 h-32 bg-orange-500/10 rounded-full blur-2xl -ml-16 -mb-16"></div>
+        <div className="relative bg-gray-900/80 backdrop-blur-sm border border-gray-800 rounded-xl p-6 overflow-hidden hover:scale-[1.002] transition-transform">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 rounded-full blur-2xl -mr-16 -mt-16 pointer-events-none"></div>
+          <div className="absolute bottom-0 left-0 w-32 h-32 bg-orange-500/10 rounded-full blur-2xl -ml-16 -mb-16 pointer-events-none"></div>
 
           {/* Card content */}
           <div className="space-y-6">
-            <div className="flex justify-between items-center">
-              <div className="flex items-center gap-2">
+            {/* Header */}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L20 7V17L12 22L4 17V7L12 2Z" stroke="#ff6b00" strokeWidth="2" />
-                  </svg>
+                  <GitHubIcon />
                 </div>
                 <div>
-                  <h3 className="text-white font-medium">{title}</h3>
-                  <p className="text-gray-400 text-sm">{subtitle}</p>
+                  <p className="text-gray-400 text-sm">{repoOwner}</p>
+                  <h3 className="text-white font-medium">{repoOwner}/{repoName}</h3>
                 </div>
               </div>
-              <div className="px-2 py-1 bg-orange-500/10 rounded text-orange-400 text-sm">{status}</div>
+              <StatusBadge status={status} />
             </div>
 
-            <ProgressBar value={progress} delay={delay + 0.5} />
+            {/* Issue highlight */}
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: delay + 0.15, duration: 0.6 }}
+              className="p-4 bg-gray-800/50 rounded-lg border border-gray-700"
+            >
+              <div className="flex items-start justify-between">
+                <div className="flex-1">
+                  <p className="text-white font-semibold">{issueTitle}</p>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-1">
-                <p className="text-gray-400 text-sm">Total Funding</p>
-                <p className="text-white font-medium">{totalFunding}</p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-gray-400 text-sm">Released</p>
-                <p className="text-white font-medium">{releasedFunding}</p>
-              </div>
-            </div>
+                  <div className="flex gap-2 mt-3 flex-wrap">
+                    {issueLabels.map((label, idx) => (
+                      <span
+                        key={idx}
+                        className="text-xs px-2 py-1 bg-gray-700 rounded-full text-gray-300 border border-gray-700"
+                      >
+                        {label}
+                      </span>
+                    ))}
+                  </div>
+                </div>
 
-            <div className="space-y-2">
-              <div className="flex justify-between items-center">
-                <p className="text-gray-400 text-sm">Next Milestone</p>
-                <p className="text-orange-400 text-sm">{daysLeft} days left</p>
+                <div className="ml-4 text-right flex-shrink-0">
+                  <p className="text-gray-400 text-xs">{applicants} applicants</p>
+                  <p className="text-sm mt-2">
+                    {status === "Assigned" ? (
+                      <span className="text-orange-400 font-medium">Assigned to you</span>
+                    ) : status === "In Review" ? (
+                      <span className="text-amber-400 font-medium">In Review</span>
+                    ) : (
+                      <span className="text-gray-300 text-sm">Open</span>
+                    )}
+                  </p>
+                </div>
               </div>
-              <div className="p-3 bg-gray-800/50 rounded-lg border border-gray-700">
-                <p className="text-white text-sm">{nextMilestone}</p>
-              </div>
+            </motion.div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-2 text-center">
+              <Stat label="Contributors" value={contributorsCount} />
+              <Stat label="PRs Merged" value={prsMerged} />
+              {stars !== undefined ? <Stat label="Stars" value={stars} /> : <div />}
             </div>
           </div>
         </div>
@@ -87,3 +141,4 @@ export default function ProjectCard({
     </motion.div>
   )
 }
+

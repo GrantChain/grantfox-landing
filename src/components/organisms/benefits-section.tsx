@@ -8,36 +8,54 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Database, Code, Award, Building } from "lucide-react";
+import { Radar, SearchCode, Workflow, BadgeCheck, Rocket, HandCoins, type LucideIcon } from "lucide-react";
 
-const useCases = [
+type Benefit = {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+};
+
+const benefits: Benefit[] = [
   {
-    icon: <Database className="h-12 w-12 text-orange-500" />,
-    title: "Blockchains",
+    title: "More Visibility for Your Project",
     description:
-      "Fund ecosystem development, protocol improvements, and infrastructure projects with transparent milestone tracking.",
+      "GrantFox helps projects reach active contributors by syncing repos, highlighting open issues, and showcasing activity across the platform.",
+    icon: Radar,
   },
   {
-    icon: <Building className="h-12 w-12 text-orange-500" />,
-    title: "DAOs",
+    title: "Discover Work That Matches Your Skills",
     description:
-      "Distribute community treasury funds to builders with decentralized governance and automated payments.",
+      "Contributors get personalized issue recommendations based on languages, interests, and GitHub activity — making it easy to find meaningful tasks.",
+    icon: SearchCode,
   },
   {
-    icon: <Award className="h-12 w-12 text-orange-500" />,
-    title: "Hackathons & Events",
+    title: "Streamlined Issue Management",
     description:
-      "Run hackathons or events with prize pools secured in smart escrows and released based on judging outcomes.",
+      "Maintainers can review applicants, assign tasks, follow PRs, and manage contributions from a clean and unified workspace.",
+    icon: Workflow,
   },
   {
-    icon: <Code className="h-12 w-12 text-orange-500" />,
-    title: "Bounties",
+    title: "Build Your Verified OSS Reputation",
     description:
-      "Organize bounty programs and challenges with secure funding and verifiable completion criteria.",
+      "Every merged PR builds your verifiable contribution history, helping contributors stand out during grants, hackathons, and job opportunities.",
+    icon: BadgeCheck,
+  },
+  {
+    title: "Faster Collaboration, Less Overhead",
+    description:
+      "GrantFox reduces friction by syncing directly with GitHub, centralizing communication, and simplifying how teams onboard contributors.",
+    icon: Rocket,
+  },
+  {
+    title: "Rewards (soon)",
+    description:
+      "Earn rewards in USDC through transparent, trustless smart escrows — fully automated once work is approved.",
+    icon: HandCoins,
   },
 ];
 
-export default function UseCasesSection() {
+export default function BenefitsSection() {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -55,7 +73,7 @@ export default function UseCasesSection() {
   };
 
   return (
-    <section id="use-cases" className="py-20 relative overflow-hidden">
+    <section id="benefits" className="py-20 relative overflow-hidden">
       <div className="absolute inset-0" />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -67,11 +85,10 @@ export default function UseCasesSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-orange-300">
-            Use Cases
+            Why Builders Choose GrantFox
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            GrantFox is designed to serve various funding scenarios in the Web3
-            ecosystem.
+            GrantFox brings contributors and maintainers together with tools that simplify collaboration, boost visibility, and accelerate open-source development.
           </p>
         </motion.div>
 
@@ -82,19 +99,19 @@ export default function UseCasesSection() {
           viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
-          {useCases.map((useCase, index) => (
+          {benefits.map((benefit, index) => (
             <motion.div key={index} variants={itemVariants}>
               <Card className="bg-gray-900/50 border-gray-800">
                 <div className="absolute inset-0 bg-gradient-to-br from-orange-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <CardHeader className="relative z-10">
-                  <div className="mb-4">{useCase.icon}</div>
+                  <div className="mb-4">{<benefit.icon className="h-12 w-12 text-orange-500" />}</div>
                   <CardTitle className="text-2xl text-white">
-                    {useCase.title}
+                    {benefit.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="relative z-10">
                   <CardDescription className="text-gray-400 text-base">
-                    {useCase.description}
+                    {benefit.description}
                   </CardDescription>
                 </CardContent>
               </Card>

@@ -1,73 +1,106 @@
 "use client";
 import Link from "next/link";
-import { Github, Twitter, DiscIcon as Discord, Linkedin } from "lucide-react";
-import Logo from "@/components/atoms/logo";
+import Image from "next/image";
+import { Linkedin, Twitter } from "lucide-react";
 
-export default function Footer() {
+export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
+  const links = [
+    { label: "Website", href: "http://contribute.grantfox.xyz/" },
+    { label: "Docs", href: "https://docs.grantfox.xyz/" },
+  ];
+
+  const socials = [
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/company/grantfox",
+      label: "LinkedIn",
+    },
+    {
+      icon: Twitter,
+      href: "https://x.com/itsgrantfox",
+      label: "X (Twitter)",
+    },
+  ];
+
   return (
-    <footer className="bg-black border-t border-gray-800">
-      <div className="container mx-auto px-4 md:px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-between">
-          <div className="md:col-span-1">
-            <Logo size="lg" />
-
-            <p className="text-gray-400 mb-6">
-              Open-source grants platform using smart escrows for secure
-              milestone-based funding.
-            </p>
-
-            <div className="flex space-x-4 mb-4">
-              <Link
-                href="https://github.com/GrantChain"
-                target="_blank"
-                className="text-gray-400 hover:text-orange-500 transition-colors"
-              >
-                <Github size={20} />
-                <span className="sr-only">GitHub</span>
-              </Link>
-              <Link
-                href="https://x.com/itsgrantfox"
-                target="_blank"
-                className="text-gray-400 hover:text-orange-500 transition-colors"
-              >
-                <Twitter size={20} />
-                <span className="sr-only">Twitter</span>
-              </Link>
-              <Link
-                href="https://www.linkedin.com/company/grantfox"
-                target="_blank"
-                className="text-gray-400 hover:text-orange-500 transition-colors"
-              >
-                <Linkedin size={20} />
-                <span className="sr-only">LinkedIn</span>
-              </Link>
+    <footer className="relative border-t border-border bg-black">
+      {/* Main Footer Content */}
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {/* Brand Section */}
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-3">
+              <Image
+                src="/favicon.ico"
+                alt="GrantFox Logo"
+                width={40}
+                height={40}
+                className="rounded-lg"
+              />
+              <h3 className="text-xl font-bold tracking-tight">GrantFox</h3>
             </div>
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Open-source collaboration hub. For the
+              community, by the community.
+            </p>
           </div>
 
-          <div>
-            <h3 className="text-white font-semibold mb-4">Resources</h3>
-            <ul className="space-y-2">
-              <li>
+          {/* Quick Links */}
+          <div className="flex flex-col gap-4">
+            <h4 className="font-semibold">Resources</h4>
+            <nav className="flex flex-col gap-2">
+              {links.map((link) => (
                 <Link
-                  href="https://docs.grantfox.xyz"
+                  key={link.href}
+                  href={link.href}
                   target="_blank"
-                  className="text-gray-400 hover:text-orange-500 transition-colors"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  Documentation
+                  {link.label}
                 </Link>
-              </li>
-            </ul>
+              ))}
+            </nav>
+          </div>
+
+          {/* Social Links */}
+          <div className="flex flex-col gap-4">
+            <h4 className="font-semibold">Connect</h4>
+            <div className="flex flex-col gap-2">
+              {socials.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <Link
+                    key={social.href}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground w-fit"
+                  >
+                    <Icon size={16} />
+                    {social.label}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-500 text-sm">
-            &copy; {currentYear} GrantFox. All rights reserved.
+        {/* Divider */}
+        <div className="my-8 border-t border-border" />
+
+        {/* Bottom Section */}
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-muted-foreground">
+            © {currentYear} GrantFox. All rights reserved.
+          </p>
+          <p className="text-xs text-muted-foreground">
+            Built with ❤️ for the community | From Latam
           </p>
         </div>
       </div>
     </footer>
   );
-}
+};

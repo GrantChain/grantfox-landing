@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Shield, Zap, Lock, Coins, BarChart, Users } from "lucide-react";
+import { GitBranch, Folders, Users, LayoutDashboard, Coins, Sparkles } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -12,40 +12,40 @@ import {
 
 const features = [
   {
-    icon: <Shield className="h-10 w-10 text-orange-500" />,
-    title: "Trustless Escrows",
+    icon: <GitBranch className="h-10 w-10 text-orange-500" />,
+    title: "GitHub-Native Integration",
     description:
-      "Smart contracts ensure funds are only released when milestones are completed and verified.",
+      "Sync your organizations, repositories, issues, and pull requests so you can manage everything from one place.",
   },
   {
-    icon: <Zap className="h-10 w-10 text-orange-500" />,
-    title: "Fast Deployment",
+    icon: <Folders className="h-10 w-10 text-orange-500" />,
+    title: "Project Hubs",
     description:
-      "Set up grant programs in minutes with customizable templates and workflows.",
-  },
-  {
-    icon: <Lock className="h-10 w-10 text-orange-500" />,
-    title: "Secure Funding",
-    description:
-      "Multi-signature approvals and decentralized verification protect all transactions.",
-  },
-  {
-    icon: <Coins className="h-10 w-10 text-orange-500" />,
-    title: "Multi-Chain Support",
-    description:
-      "Compatible with major blockchains including Ethereum, Solana, and more.",
-  },
-  {
-    icon: <BarChart className="h-10 w-10 text-orange-500" />,
-    title: "Analytics Dashboard",
-    description:
-      "Track grant performance, milestone completion, and fund distribution in real-time.",
+      "Give each project a dedicated page with open issues, contribution guidelines, and live activity.",
   },
   {
     icon: <Users className="h-10 w-10 text-orange-500" />,
-    title: "Community Governance",
+    title: "Contributor Dashboard",
     description:
-      "Enable community voting and transparent decision-making for grant approvals.",
+      "Discover projects, apply to issues, track your applications, and build a verifiable Web3 reputation.",
+  },
+  {
+    icon: <LayoutDashboard className="h-10 w-10 text-orange-500" />,
+    title: "Maintainer Workspace",
+    description:
+      "Review applicants, assign issues, follow PRs, and manage your contributor pipeline from a single, focused workspace.",
+  },
+  {
+    icon: <Coins className="h-10 w-10 text-orange-500" />,
+    title: "Rewards with smart escrows (soon)",
+    description:
+      "Rewards for contributors and maintainers in USDC using transparent smart escrows once work is completed and approved.",
+  },
+  {
+    icon: <Sparkles className="h-10 w-10 text-orange-500" />,
+    title: "Collaboration Campaigns",
+    description:
+      "Run time-boxed contribution campaigns to attract new builders, boost progress, and keep your repos moving.",
   },
 ];
 
@@ -79,11 +79,11 @@ export default function FeaturesSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-orange-300">
-            Powerful Features
+            Built for Open-Source Collaboration
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            GrantFox provides a comprehensive suite of tools to manage and
-            distribute grants securely and efficiently.
+            GrantFox gives maintainers and contributors the tools they need to discover each other, 
+            coordinate work, and ship high-quality open source together.
           </p>
         </motion.div>
 
