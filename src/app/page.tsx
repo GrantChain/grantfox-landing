@@ -18,7 +18,6 @@ export default function Home() {
       <FeaturesSection />
       <HowItWorksSection />
       <BenefitsSection />
-      <CallToActionSection />
       <Testimonials />
       <Footer />
     </MainTemplate>

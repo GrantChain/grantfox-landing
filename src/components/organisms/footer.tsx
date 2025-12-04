@@ -25,7 +25,7 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="relative border-t border-border bg-black">
+    <footer className="relative border-t border-border bg-black border-neutral-800">
       {/* Main Footer Content */}
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -42,8 +42,8 @@ export const Footer = () => {
               <h3 className="text-xl font-bold tracking-tight">GrantFox</h3>
             </div>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Open-source collaboration hub. For the
-              community, by the community.
+              Open-source collaboration hub. For the community, by the
+              community.
             </p>
           </div>
 
@@ -89,7 +89,7 @@ export const Footer = () => {
         </div>
 
         {/* Divider */}
-        <div className="my-8 border-t border-border" />
+        <div className="my-8 border-t border-border border-neutral-800" />
 
         {/* Bottom Section */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

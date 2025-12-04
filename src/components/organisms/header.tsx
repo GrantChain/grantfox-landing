@@ -98,13 +98,23 @@ export default function Header() {
                   hidden: { opacity: 0, y: -20 },
                   visible: { opacity: 1, y: 0 },
                 }}
+                className="flex items-center gap-4"
               >
                 <Link href="https://contribute.grantfox.xyz" target="_blank">
                   <Button
                     variant="outline"
                     className="border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white transition-colors cursor-pointer"
                   >
-                    Launch App
+                    Launch Contributor App
+                  </Button>
+                </Link>
+
+                <Link href="https://maintainer.grantfox.xyz" target="_blank">
+                  <Button
+                    variant="outline"
+                    className="border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white transition-colors cursor-pointer"
+                  >
+                    Launch Maintainer App
                   </Button>
                 </Link>
               </motion.div>
@@ -153,7 +163,7 @@ export default function Header() {
               className="py-2"
               onClick={() => setIsMenuOpen(false)}
             >
-             Testimonials
+              Testimonials
             </NavLink>
             <Link href="https://contribute.grantfox.xyz" target="_blank">
               <Button
@@ -161,7 +171,17 @@ export default function Header() {
                 className="border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white transition-colors w-full cursor-pointer"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Launch App
+                Launch Contributor App
+              </Button>
+            </Link>
+
+            <Link href="https://maintainer.grantfox.xyz" target="_blank">
+              <Button
+                variant="outline"
+                className="border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white transition-colors w-full cursor-pointer"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Launch Maintainer App
               </Button>
             </Link>
           </motion.div>
