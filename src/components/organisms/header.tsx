@@ -7,7 +7,6 @@ import { Menu, X } from "lucide-react";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import Logo from "@/components/atoms/logo";
 import NavLink from "@/components/molecules/nav-link";
-import WaitlistForm from "@/components/testimonials-section";
 import Link from "next/link";
 import Image from "next/image";
 
