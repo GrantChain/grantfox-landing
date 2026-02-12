@@ -8,6 +8,7 @@ export async function POST(req: NextRequest) {
       { error: "Todos los campos son requeridos" },
       { status: 400 }
     );
+    
   }
   const { error } = await supabase
     .from("waitlist")
